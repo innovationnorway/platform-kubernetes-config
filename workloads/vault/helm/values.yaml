@@ -1,0 +1,15 @@
+# Vault Helm values
+# helm install 
+server:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 250m
+    limits:
+      memory: 384Mi
+      cpu: 300m
+
+# HA not supported by Azure storage, need to do extra research
+  # ha:
+  #   enabled: false
+  #   replicas: 3

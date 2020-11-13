@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1alpha3
+kind: Certificate
+metadata:
+  name: vault-innovasjonnorge-no
+  namespace: vault
+spec:
+  secretName: vault-innovasjonnorge-no
+  dnsNames:
+  - vault.innovasjonnorge.no
+  issuerRef:
+    name: letsencrypt-vault
+    kind: ClusterIssuer
