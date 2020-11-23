@@ -51,6 +51,16 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
+Template labels
+*/}}
+{{- define "tfc-agent.templateLabels" -}}
+{{ include "tfc-agent.selectorLabels" . }}
+{{- if .Values.aadPodIdentity.enabled}}
+aadpodidbinding: {{ .Values.aadPodIdentity.name }}
+{{- end }}
+{{- end }}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "tfc-agent.serviceAccountName" -}}

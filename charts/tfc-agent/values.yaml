@@ -18,6 +18,10 @@ terraformCloudSecrets:
   agentName: ""
   agentToken: ""
 
+aadPodIdentity:
+  enabled: false
+  name: ""
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false
