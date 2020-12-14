@@ -1,0 +1,17 @@
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentity
+metadata:
+  name: "cluster-core-aks-pwe-agentpool"               # The name of your Azure identity
+spec:
+  type: 0
+  resourceID: /subscriptions/39a9d242-811d-4456-a8c1-ab0e5c36d2fa/resourceGroups/MC_core-aks-pwe-rg_cluster-core-aks-pwe_westeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/cluster-core-aks-pwe-agentpool
+  clientID: "0d08446c-afad-467e-891e-3bc2430598f4"
+---
+apiVersion: aadpodidentity.k8s.io/v1
+kind: AzureIdentityBinding
+metadata:
+  name: azure-pod-identity-binding
+spec:
+  azureIdentity: cluster-core-aks-pwe-agentpool
+  selector: azure-pod-identity
+---
