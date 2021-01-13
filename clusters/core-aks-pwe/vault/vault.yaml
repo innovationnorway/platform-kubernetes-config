@@ -1,0 +1,26 @@
+apiVersion: helm.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: vault-hr
+  namespace: vault-ha
+spec:
+  chart:
+    spec:
+      chart: vault
+      sourceRef:
+        kind: HelmRepository
+        name: hashicorp
+  values:
+    server:
+      resources:
+        requests:
+          memory: 256Mi
+          cpu: 250m
+        limits:
+          memory: 384Mi
+          cpu: 300m
+      ha:
+        enabled: true
+        replicas: 3
+        raft:
+          enabled: true
