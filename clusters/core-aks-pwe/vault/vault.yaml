@@ -4,6 +4,7 @@ metadata:
   name: vault-hr
   namespace: vault-ha
 spec:
+  interval: 5m
   chart:
     spec:
       chart: vault
