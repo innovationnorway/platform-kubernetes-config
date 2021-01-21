@@ -34,7 +34,7 @@ spec:
                 path: /
                 pathType: ImplementationSpecific
         tls:
-          - secretName: chart-example-tls
+          - secretName: vault-innovasjonnorge-no
             hosts:
               - vault.innovasjonnorge.no
       resources:
