@@ -15,6 +15,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 terraformCloudSecrets:
+  create: false
   agentName: ""
   agentToken: ""
 
