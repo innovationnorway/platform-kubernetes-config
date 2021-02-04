@@ -1,0 +1,27 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Provider
+metadata:
+  name: teams
+  namespace: flux-system
+spec:
+  type: msteams
+  channel: kubernetes
+  secretRef:
+    name: teams-webhook
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: generic-alert
+  namespace: flux-system
+spec:
+  providerRef:
+    name: msteams
+  eventSeverity: info
+  eventSources:
+    - kind: GitRepository
+      name: '*'
+    - kind: Kustomization
+      name: '*'
+    - kind: HelmRepositories
+      name: '*'
