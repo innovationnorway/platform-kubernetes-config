@@ -23,5 +23,7 @@ spec:
       name: '*'
     - kind: Kustomization
       name: '*'
-    - kind: HelmRepositories
+    - kind: HelmRepository
+      name: '*'
+    - kind: HelmRelease
       name: '*'
