@@ -13,7 +13,8 @@ spec:
         kind: HelmRepository
         name: bitnami
 securityContext:
+  enabled: true
   runAsUser: 2000
 containerSecurityContext:
+  enabled: true
   runAsUser: 2000
-  allowPrivilegeEscalation: false
