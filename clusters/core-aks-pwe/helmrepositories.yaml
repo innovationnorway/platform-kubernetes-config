@@ -17,3 +17,11 @@ spec:
   url: https://helm.releases.hashicorp.com
   interval: 10m
 ---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: innovationnorway
+  namespace: tfc-agent
+spec:
+  url: https://innovationnorway.github.io/platform-kubernetes-config/
+  interval: 10m
