@@ -12,9 +12,9 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bitnami
-    securityContext:
-      runAsUser: 2000
-      allowPrivilegeEscalation: false
+securityContext:
+  runAsUser: 2000
+  allowPrivilegeEscalation: false
   # values:
   #   containerSecurityContext:
   #     enabled: true
