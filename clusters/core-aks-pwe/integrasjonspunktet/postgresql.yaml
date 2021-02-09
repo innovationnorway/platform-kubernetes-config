@@ -12,9 +12,10 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bitnami
-securityContext:
-  enabled: true
-  runAsUser: 2000
-containerSecurityContext:
-  enabled: true
-  runAsUser: 2000
+  values:
+    securityContext:
+      enabled: true
+      runAsUser: 2000
+    containerSecurityContext:
+      enabled: true
+      runAsUser: 2000
