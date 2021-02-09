@@ -1,7 +1,7 @@
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
 metadata:
-  name: teams
+  name: msteams
   namespace: flux-system
 spec:
   type: msteams
