@@ -37,6 +37,10 @@ spec:
           command: {{ .Values.command.cmd }}
           args: {{ .Values.command.args }}
           {{- end }}
+          {{- with .Values.env }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- if .Values.terraformCloudSecrets.create }}
           envFrom:
           - secretRef:

@@ -36,6 +36,8 @@ command:
   enabled: false
   cmd: [""]
   args: [""]
+  
+env: {}
 
 podAnnotations: {}
 
