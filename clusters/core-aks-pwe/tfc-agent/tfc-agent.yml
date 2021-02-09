@@ -14,7 +14,7 @@ spec:
         name: innovationnorway
   values:
     serviceAccount:
-      enabled: true
+      create: true
     terraformCloudSecrets:
       enabled: false
     command:
