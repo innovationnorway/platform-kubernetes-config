@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: tfc-agent
-      version: "0.4.0"
+      version: "0.4.1"
       sourceRef:
         kind: HelmRepository
         name: innovationnorway
@@ -21,6 +21,9 @@ spec:
       enabled: true
       cmd: ['/bin/sh']
       args: ['-c', 'source /vault/secrets/config && /bin/tfc-agent']
+    env:
+      name: VAULT_ADDR
+      value: https://vault.innovasjonnorge.no:8200
     podAnnotations:
       vault.hashicorp.com/agent-inject: 'true'
       vault.hashicorp.com/role: 'tfc-agent'
