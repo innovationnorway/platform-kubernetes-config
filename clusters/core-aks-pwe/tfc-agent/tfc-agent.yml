@@ -20,7 +20,7 @@ spec:
     command:
       enabled: true
       cmd: ['/bin/bash']
-      args: ['-c', 'source /vault/secrets/config && /bin/tfc-agent']
+      args: ['-c', '"source /vault/secrets/config && /bin/tfc-agent"']
     env:
       name: VAULT_ADDR
       value: https://vault.innovasjonnorge.no:8200
