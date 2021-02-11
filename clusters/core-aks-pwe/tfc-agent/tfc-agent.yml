@@ -19,7 +19,7 @@ spec:
       enabled: false
     command:
       enabled: true
-      cmd: ['/bin/sh']
+      cmd: ['/bin/bash']
       args: ['-c', 'source /vault/secrets/config && /bin/tfc-agent']
     env:
       name: VAULT_ADDR
