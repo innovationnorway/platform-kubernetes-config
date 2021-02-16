@@ -1,0 +1,30 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: k10
+  namespace: kasten
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: k10
+      version: "3.0.7"
+      sourceRef:
+        kind: HelmRepository
+        name: kasten
+  values:
+    command:
+      enabled: true
+      cmd: ['/bin/bash']
+      args: ['-c', '"source /vault/secrets/config && /bin/kasten"']
+    podAnnotations:
+      vault.hashicorp.com/agent-inject: 'true'
+      vault.hashicorp.com/role: 'kasten'
+      vault.hashicorp.com/agent-inject-secret-config: 'kasten/data/azure'
+      # Environment variable export template
+      vault.hashicorp.com/agent-inject-template-config: |
+        {{ with secret "kasten/data/azure" -}}
+          export AZURE_CLIENT_ID="{{ .Data.data.AZURE_CLIENT_ID }}"
+          export AZURE_CLIENT_SECRET="{{ .Data.data.AZURE_CLIENT_SECRET }}"
+          export AZURE_TENANT_ID="{{ .Data.data.AZURE_TENANT_ID }}"
+        {{- end }}
