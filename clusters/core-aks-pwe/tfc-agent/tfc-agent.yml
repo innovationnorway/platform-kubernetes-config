@@ -22,7 +22,7 @@ spec:
       cmd: ['/bin/bash']
       args: ['-c', '"source /vault/secrets/config && /bin/tfc-agent"']
     env:
-      name: VAULT_ADDR
+    - name: VAULT_ADDR
       value: https://vault.innovasjonnorge.no
     podAnnotations:
       vault.hashicorp.com/agent-inject: 'true'
