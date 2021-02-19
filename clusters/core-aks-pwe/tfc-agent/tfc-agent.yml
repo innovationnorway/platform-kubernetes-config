@@ -23,9 +23,7 @@ spec:
         - /bin/bash
         - -c
       args:
-        - "source /vault/secrets/config"
-        - "printenv"
-        - "/bin/tfc-agent"
+        - "source /vault/secrets/config && printenv && /bin/tfc-agent"
     env:
     - name: VAULT_ADDR
       value: https://vault.innovasjonnorge.no
