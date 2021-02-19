@@ -19,8 +19,8 @@ spec:
       enabled: false
     command:
       enabled: true
-      cmd: ["\"/bin/bash\""]
-      args: ["\"-c source /vault/secrets/config && /bin/tfc-agent\""]
+      cmd: ["/bin/bash", "-c"]
+      args: ["source /vault/secrets/config && /bin/tfc-agent"]
     env:
     - name: VAULT_ADDR
       value: https://vault.innovasjonnorge.no
