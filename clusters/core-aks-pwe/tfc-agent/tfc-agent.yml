@@ -24,6 +24,7 @@ spec:
         - -c
       args:
         - "source /vault/secrets/config"
+        - "printenv"
         - "/bin/tfc-agent"
     env:
     - name: VAULT_ADDR
