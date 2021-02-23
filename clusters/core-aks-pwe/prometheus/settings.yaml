@@ -11,6 +11,7 @@ metadata:
   namespace: monitoring
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: letsencrypt-vault
 spec:
   rules:
   - host: grafana.innovationnorway.io
@@ -20,3 +21,7 @@ spec:
         backend:
           serviceName: prom-grafana
           servicePort: 80
+  tls:
+  - hosts:
+    - grafana.innovationnorway.io
+    secretName: grafana-innovationnorway-io
