@@ -4,3 +4,19 @@ kind: Namespace
 metadata:
   name: monitoring
 ---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-grafana
+  namespace: monitoring
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: grafana.innovationnorway.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: prom-grafana
+          servicePort: 80
