@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: activemq
+  name: activemq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: activemq
+  template:
+    metadata:
+      labels:
+        app: activemq
+    spec:
+      containers:
+      - image: rmohr/activemq:5.10.0
+        name: activemq
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: activemq
+  name: activemq
+spec:
+  ports:
+  - name: 61616-61616
+    port: 61616
+    protocol: TCP
+    targetPort: 61616
+  selector:
+    app: activemq
