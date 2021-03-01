@@ -4,6 +4,7 @@ metadata:
   labels:
     app: ipunkt
   name: ipunkt
+  namespace: ipunkt
 spec:
   replicas: 1
   selector:
