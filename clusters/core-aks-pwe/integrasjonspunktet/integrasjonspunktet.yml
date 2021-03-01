@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ipunkt
+  name: ipunkt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ipunkt
+  template:
+    metadata:
+      labels:
+        app: ipunkt
+    spec:
+      containers:
+      - image: difi/integrasjonspunkt:2.1.1
+        name: integrasjonspunkt
+        volumeMounts:
+        - name: keystore
+          mountPath: "/etc/keystore"
+          readOnly: true
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "production"
+        - name: DIFI_MOVE_ORG_NUMBER
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_ORG_NUMBER
+        - name: DIFI_MOVE_ORG_KEYSTORE_ALIAS
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_ORG_KEYSTORE_ALIAS
+        - name: DIFI_MOVE_ORG_KEYSTORE_PATH
+          value: "file:/etc/keystore/keystore.jks"
+        - name: DIFI_MOVE_ORG_KEYSTORE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_ORG_KEYSTORE_PASSWORD
+        - name: DIFI_MOVE_FEATURE_ENABLEDPO
+          value: "true"
+        - name: DIFI_MOVE_FEATURE_ENABLEDPE
+          value: "false"
+        - name: DIFI_MOVE_DPO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_DPO_USERNAME
+        - name: DIFI_MOVE_DPO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_DPO_PASSWORD
+        - name: DIFI_MOVE_NEXTMOVE_USE_DB_PERSISTENCE
+          value: "true"
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:postgresql://postgresql.ipunkt.svc.cluster.local:5432/postgres"
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "postgres"
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgresql
+              key: postgresql-password
+        - name: SPRING_ACTIVEMQ_BROKERURL
+          value: "tcp://activemq.default.svc.cluster.local:61616"
+      volumes:
+      - name: keystore
+        secret:
+          secretName: keystore.jks
+          items:
+          - key: keystore.jks
+            path: keystore.jks
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ipunkt
+  name: ipunkt
+spec:
+  ports:
+  - name: 9093-9093
+    port: 9093
+    protocol: TCP
+    targetPort: 9093
+  selector:
+    app: ipunkt
+  type: LoadBalancer
