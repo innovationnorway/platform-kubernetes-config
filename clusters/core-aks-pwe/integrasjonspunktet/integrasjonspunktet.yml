@@ -16,7 +16,7 @@ spec:
         app: ipunkt
     spec:
       containers:
-      - image: difi/integrasjonspunkt:2.1.3
+      - image: difi/integrasjonspunkt:latest
         name: integrasjonspunkt
         volumeMounts:
         - name: keystore
