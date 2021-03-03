@@ -23,8 +23,8 @@ spec:
           mountPath: "/etc/keystore"
           readOnly: true
         env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: "production"
+        #- name: SPRING_PROFILES_ACTIVE
+        #  value: "production"
         - name: DIFI_MOVE_ORG_NUMBER
           valueFrom:
             secretKeyRef:
