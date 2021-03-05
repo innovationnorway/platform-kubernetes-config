@@ -18,6 +18,7 @@ spec:
       containers:
       - image: difi/integrasjonspunkt:latest
         name: integrasjonspunkt
+        command: [ "/bin/sleep", "1000000"]
         volumeMounts:
         - name: keystore
           mountPath: "/etc/keystore"
