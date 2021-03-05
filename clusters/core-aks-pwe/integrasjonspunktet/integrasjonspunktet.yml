@@ -18,14 +18,11 @@ spec:
       containers:
       - image: difi/integrasjonspunkt:latest
         name: integrasjonspunkt
-        command: [ "/bin/sleep", "1000000"]
         volumeMounts:
         - name: keystore
           mountPath: "/etc/keystore"
           readOnly: true
         env:
-        # - name: SPRING_PROFILES_ACTIVE
-        #   value: "production" # Trengs ikke, i følge DigDir support
         - name: DIFI_MOVE_ORG_NUMBER
           valueFrom:
             secretKeyRef:
