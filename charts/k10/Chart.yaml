@@ -1,0 +1,12 @@
+apiVersion: v1
+appVersion: 3.0.7
+description: Kasten’s K10 Data Management Platform
+home: https://kasten.io/
+icon: https://docs.kasten.io/_static/kasten.png
+maintainers:
+- email: support@kasten.io
+  name: kastenIO
+- email: roberth.strand@crayon.com
+  name: Roberth Strand
+name: k10
+version: 1.0.0
