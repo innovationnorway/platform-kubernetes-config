@@ -64,7 +64,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: postgresql
-              key: postgresql-password
+              key: postgresql-postgres-password
         - name: SPRING_ACTIVEMQ_BROKERURL
           value: "tcp://activemq.default.svc.cluster.local:61616"
       volumes:
