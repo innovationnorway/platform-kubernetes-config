@@ -22,7 +22,7 @@ spec:
         - containerPort: 9116
         volumeMounts:
         - name: config
-          mountPath: /etc/snmp_exporter/snmp.yml
+          mountPath: /etc/snmp-exporter/snmp.yml
           subPath: config.yml
         resources:
           limits:
@@ -31,12 +31,12 @@ spec:
       volumes:
       - name: config
         configMap:
-          name: snmp_exporter
+          name: snmp-exporter
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: snmp_exporter
+  name: snmp-exporter
   namespace: monitoring
 data:
   config.yaml: |
