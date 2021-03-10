@@ -24,14 +24,14 @@ spec:
         - name: config
           mountPath: /etc/snmp_exporter/snmp.yml
           subPath: config.yml
-        volumes:
-        - name: config
-          configMap:
-            name: snmp_exporter
         resources:
           limits:
             memory: "128Mi"
             cpu: "100m"
+      volumes:
+      - name: config
+        configMap:
+          name: snmp_exporter
 ---
 apiVersion: v1
 kind: ConfigMap
