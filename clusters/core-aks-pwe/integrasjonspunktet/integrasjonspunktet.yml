@@ -10,6 +10,9 @@ spec:
   selector:
     matchLabels:
       app: ipunkt
+  securityContext:
+    runAsUser: 2000
+    allowPrivilegeEscalation: false
   template:
     metadata:
       labels:
