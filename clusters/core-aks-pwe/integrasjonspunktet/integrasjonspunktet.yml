@@ -14,10 +14,10 @@ spec:
     metadata:
       labels:
         app: ipunkt
-    securityContext:
-      runAsUser: 2000
-      allowPrivilegeEscalation: false
     spec:
+      securityContext:
+        runAsUser: 2000
+        allowPrivilegeEscalation: false
       containers:
       - image: difi/integrasjonspunkt:latest
         name: integrasjonspunkt
