@@ -21,6 +21,7 @@ spec:
     spec:
       containers:
       - name: activemq
+        fsGroup: 2000
         image: rmohr/activemq:5.15.9
         ports:
         - containerPort: 61616
@@ -36,7 +37,7 @@ spec:
       storageClassName: default
       resources:
         requests:
-          storage: 1Gi
+          storage: 10Gi
 ---
 apiVersion: v1
 kind: Service
