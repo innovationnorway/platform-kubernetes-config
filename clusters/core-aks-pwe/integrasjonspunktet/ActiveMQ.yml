@@ -33,10 +33,10 @@ spec:
       name: amq-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: default
+      storageClassName: "default"
       resources:
         requests:
-          storage: 1Gi
+          storage: 10Gi
 ---
 apiVersion: v1
 kind: Service
