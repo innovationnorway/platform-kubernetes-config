@@ -16,11 +16,14 @@ spec:
         app: ipunkt
     spec:
       securityContext:
-        runAsUser: 2000
-        allowPrivilegeEscalation: false
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
       containers:
       - image: difi/integrasjonspunkt:latest
         name: integrasjonspunkt
+        securityContext:
+          allowPrivilegeEscalation: false
         volumeMounts:
         - name: keystore
           mountPath: "/etc/keystore"
