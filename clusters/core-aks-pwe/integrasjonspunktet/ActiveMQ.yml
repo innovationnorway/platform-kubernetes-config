@@ -28,7 +28,7 @@ spec:
           name: activemq
         volumeMounts:
         - name: amq-data
-          mountPath: /opt/activemq/
+          mountPath: /opt/activemq/data
   volumeClaimTemplates:
   - metadata:
       name: amq-data
