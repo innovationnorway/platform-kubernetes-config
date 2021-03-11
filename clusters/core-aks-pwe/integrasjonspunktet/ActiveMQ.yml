@@ -19,11 +19,11 @@ spec:
         app: activemq
         workload: ipunkt
     spec:
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 2000
       containers:
       - name: activemq
-        securityContext:
-          runAsUser: 1000
-          fsGroup: 2000
         image: rmohr/activemq:5.15.9
         ports:
         - containerPort: 61616
