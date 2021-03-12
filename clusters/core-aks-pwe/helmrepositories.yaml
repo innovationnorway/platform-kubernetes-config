@@ -44,3 +44,12 @@ spec:
   url: https://charts.kasten.io/
   interval: 10m
 ---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: enix
+  namespace: netbox
+spec:
+  url: https://charts.enix.io/
+  interval: 10m
+---
