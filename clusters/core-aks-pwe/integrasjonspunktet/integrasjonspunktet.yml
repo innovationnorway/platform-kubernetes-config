@@ -23,7 +23,10 @@ spec:
       - image: difi/integrasjonspunkt:latest
         name: integrasjonspunkt
         securityContext:
+          privileged: false
+          readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
+          runAsNonRoot: true
         volumeMounts:
         - name: keystore
           mountPath: "/etc/keystore"
