@@ -24,7 +24,7 @@ spec:
         name: integrasjonspunkt
         securityContext:
           privileged: false
-          readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: false
           allowPrivilegeEscalation: false
           runAsNonRoot: true
         volumeMounts:
