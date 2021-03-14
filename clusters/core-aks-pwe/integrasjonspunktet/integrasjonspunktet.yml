@@ -32,8 +32,8 @@ spec:
             cpu: 100m
             memory: 800Mi
           limits:
-            cpu: 500m
-            memory: 2000Mi
+            cpu: 2000m
+            memory: 2250Mi
         volumeMounts:
         - name: keystore
           mountPath: "/etc/keystore"
