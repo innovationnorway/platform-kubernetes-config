@@ -2,8 +2,8 @@ apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: kustomize-controller
-  annotations:
-    namespace: monitoring
+  namespace: monitoring
+  annotations: {}
   labels:
     release: prom
 spec:
@@ -21,8 +21,8 @@ apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: source-controller
-  annotations:
-    namespace: monitoring
+  namespace: monitoring
+  annotations: {}
   labels:
     release: prom
 spec:
@@ -40,8 +40,8 @@ apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: helm-controller
-  annotations:
-    namespace: monitoring
+  namespace: monitoring
+  annotations: {}
   labels:
     release: prom
 spec:
@@ -59,8 +59,8 @@ apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: notification-controller
-  annotations:
-    namespace: monitoring
+  namespace: monitoring
+  annotations: {}
   labels:
     release: prom
 spec:
