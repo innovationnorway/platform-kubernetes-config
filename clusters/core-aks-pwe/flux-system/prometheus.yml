@@ -62,7 +62,7 @@ metadata:
     name: notification-controller
     namespace: monitoring
   labels:
-    app: helm-controller
+    release: prom
 spec:
   podMetricsEndpoints:
   - targetPort: 8080
