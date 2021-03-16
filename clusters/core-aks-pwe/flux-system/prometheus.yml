@@ -5,7 +5,7 @@ metadata:
     name: kustomize-controller
     namespace: monitoring
   labels:
-    app: prometheus
+    release: prom
 spec:
   podMetricsEndpoints:
   - targetPort: 8080
@@ -24,7 +24,7 @@ metadata:
     name: source-controller
     namespace: monitoring
   labels:
-    app: prometheus
+    release: prom
 spec:
   podMetricsEndpoints:
   - targetPort: 8080
@@ -43,7 +43,7 @@ metadata:
     name: helm-controller
     namespace: monitoring
   labels:
-    app: prometheus
+    release: prom
 spec:
   podMetricsEndpoints:
   - targetPort: 8080
@@ -62,7 +62,7 @@ metadata:
     name: notification-controller
     namespace: monitoring
   labels:
-    app: prometheus
+    app: helm-controller
 spec:
   podMetricsEndpoints:
   - targetPort: 8080
