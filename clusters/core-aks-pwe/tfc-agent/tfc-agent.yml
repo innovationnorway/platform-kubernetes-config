@@ -8,11 +8,12 @@ spec:
   chart:
     spec:
       chart: tfc-agent
-      version: "0.6.0"
+      version: "0.7.0"
       sourceRef:
         kind: HelmRepository
         name: innovationnorway
   values:
+    replicaCount: 3
     serviceAccount:
       create: true
     terraformCloudSecrets:
