@@ -1,23 +1,58 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   labels:
     app: activemq
+    workload: ipunkt
   name: activemq
   namespace: ipunkt
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: activemq
+      workload: ipunkt
+  serviceName: activemq
+  replicas: 1
   template:
     metadata:
       labels:
         app: activemq
+        workload: ipunkt
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
       containers:
-      - image: rmohr/activemq:5.10.0
-        name: activemq
+      - name: activemq
+        image: rmohr/activemq:5.15.9
+        securityContext:
+          privileged: false
+          readOnlyRootFilesystem: false
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        ports:
+        - containerPort: 61616
+          name: activemq
+        volumeMounts:
+        - name: amq-data
+          mountPath: /opt/activemq/data
+  volumeClaimTemplates:
+  - metadata:
+      name: amq-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: default
+      resources:
+        requests:
+          storage: 10Gi
 ---
 apiVersion: v1
 kind: Service
@@ -25,6 +60,7 @@ metadata:
   namespace: ipunkt
   labels:
     app: activemq
+    workload: ipunkt
   name: activemq
 spec:
   ports:
@@ -34,3 +70,4 @@ spec:
     targetPort: 61616
   selector:
     app: activemq
+    workload: ipunkt
