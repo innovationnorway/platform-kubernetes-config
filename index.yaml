@@ -1,5 +1,22 @@
 apiVersion: v1
 entries:
+  k10:
+  - apiVersion: v1
+    appVersion: 3.0.7
+    created: "2021-03-23T08:05:50.058691308Z"
+    description: Kasten’s K10 Data Management Platform
+    digest: 76216d11a4c5e2aa6c0ec9870f8581ba0829671cb8640fede8c4a337364d7dfd
+    home: https://kasten.io/
+    icon: https://docs.kasten.io/_static/kasten.png
+    maintainers:
+    - email: support@kasten.io
+      name: kastenIO
+    - email: roberth.strand@crayon.com
+      name: Roberth Strand
+    name: k10
+    urls:
+    - https://github.com/innovationnorway/platform-kubernetes-config/releases/download/k10-1.0.2/k10-1.0.2.tgz
+    version: 1.0.2
   tfc-agent:
   - apiVersion: v2
     appVersion: 0.1.9
@@ -99,5 +116,4 @@ entries:
     urls:
     - https://github.com/innovationnorway/platform-kubernetes-config/releases/download/tfc-agent-0.1.0/tfc-agent-0.1.0.tgz
     version: 0.1.0
-  k10:
 generated: "2020-12-15T13:44:56.872562698Z"
