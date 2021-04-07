@@ -1,0 +1,75 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: kustomize-controller
+  namespace: monitoring
+  annotations: {}
+  labels:
+    release: prom
+spec:
+  podMetricsEndpoints:
+  - targetPort: 8080
+    honorLabels: true
+  namespaceSelector:
+    matchNames:
+      - flux-system
+  selector:
+    matchLabels:
+      app: kustomize-controller
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: source-controller
+  namespace: monitoring
+  annotations: {}
+  labels:
+    release: prom
+spec:
+  podMetricsEndpoints:
+  - targetPort: 8080
+    honorLabels: true
+  namespaceSelector:
+    matchNames:
+      - flux-system
+  selector:
+    matchLabels:
+      app: source-controller
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: helm-controller
+  namespace: monitoring
+  annotations: {}
+  labels:
+    release: prom
+spec:
+  podMetricsEndpoints:
+  - targetPort: 8080
+    honorLabels: true
+  namespaceSelector:
+    matchNames:
+      - flux-system
+  selector:
+    matchLabels:
+      app: helm-controller
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: notification-controller
+  namespace: monitoring
+  annotations: {}
+  labels:
+    release: prom
+spec:
+  podMetricsEndpoints:
+  - targetPort: 8080
+    honorLabels: true
+  namespaceSelector:
+    matchNames:
+      - flux-system
+  selector:
+    matchLabels:
+      app: notification-controller
