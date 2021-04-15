@@ -44,11 +44,13 @@ spec:
             secretKeyRef:
               name: integrasjonspunkt
               key: DIFI_MOVE_ORG_NUMBER
+
         - name: DIFI_MOVE_ORG_KEYSTORE_ALIAS
           valueFrom:
             secretKeyRef:
               name: integrasjonspunkt
               key: DIFI_MOVE_ORG_KEYSTORE_ALIAS
+
         - name: DIFI_MOVE_ORG_KEYSTORE_PATH
           value: "file:/etc/keystore/keystore.jks"
         - name: DIFI_MOVE_ORG_KEYSTORE_PASSWORD
@@ -56,10 +58,14 @@ spec:
             secretKeyRef:
               name: integrasjonspunkt
               key: DIFI_MOVE_ORG_KEYSTORE_PASSWORD
+
         - name: DIFI_MOVE_FEATURE_ENABLEDPO
           value: "true"
         - name: DIFI_MOVE_FEATURE_ENABLEDPE
           value: "false"
+        - name: DIFI_MOVE_FEATURE_ENABLEDPV
+          value: "true"
+
         - name: DIFI_MOVE_DPO_USERNAME
           valueFrom:
             secretKeyRef:
@@ -70,6 +76,18 @@ spec:
             secretKeyRef:
               name: integrasjonspunkt
               key: DIFI_MOVE_DPO_PASSWORD
+
+        - name: DIFI_MOVE_DPV_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_DPV_USERNAME
+        - name: DIFI_MOVE_DPV_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_DPO_PASSWORD
+
         - name: DIFI_MOVE_NEXTMOVE_USE_DB_PERSISTENCE
           value: "true"
         - name: SPRING_DATASOURCE_URL
