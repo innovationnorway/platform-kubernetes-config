@@ -63,8 +63,8 @@ spec:
           value: "true"
         - name: DIFI_MOVE_FEATURE_ENABLEDPE
           value: "false"
-        # - name: DIFI_MOVE_FEATURE_ENABLEDPV
-        #   value: "true"
+        - name: DIFI_MOVE_FEATURE_ENABLEDPV
+          value: "true"
 
         - name: DIFI_MOVE_DPO_USERNAME
           valueFrom:
