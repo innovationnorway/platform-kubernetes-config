@@ -77,16 +77,16 @@ spec:
               name: integrasjonspunkt
               key: DIFI_MOVE_DPO_PASSWORD
 
-        # - name: DIFI_MOVE_DPV_USERNAME
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: integrasjonspunkt
-        #       key: DIFI_MOVE_DPV_USERNAME
-        # - name: DIFI_MOVE_DPV_PASSWORD
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: integrasjonspunkt
-        #       key: DIFI_MOVE_DPO_PASSWORD
+        - name: DIFI_MOVE_DPV_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_DPV_USERNAME
+        - name: DIFI_MOVE_DPV_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_DPV_PASSWORD
 
         - name: DIFI_MOVE_NEXTMOVE_USE_DB_PERSISTENCE
           value: "true"
