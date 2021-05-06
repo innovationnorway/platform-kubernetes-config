@@ -10,7 +10,7 @@ spec:
     branch: master
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/innovationnorway/platform-kubernetes-config
+  url: https://github.com/innovationnorway/platform-kubernetes-config
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
