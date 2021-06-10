@@ -21,3 +21,10 @@ spec:
       limits:
         memory: 512Mi
         cpu: 300m
+    securityContext:
+      enabled: true
+    containerSecurityContext:
+      privileged: false
+      readOnlyRootFilesystem: false
+      allowPrivilegeEscalation: false
+      runAsNonRoot: true
