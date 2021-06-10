@@ -28,3 +28,9 @@ spec:
       readOnlyRootFilesystem: false
       allowPrivilegeEscalation: false
       runAsNonRoot: true
+    nodeSelector:
+      agentpool: pool01
+    webhook.nodeSelector:
+      agentpool: pool01
+    cainjector.nodeSelector:
+      agentpool: pool01
