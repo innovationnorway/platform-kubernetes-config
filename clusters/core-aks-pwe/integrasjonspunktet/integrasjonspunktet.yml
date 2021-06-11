@@ -87,6 +87,29 @@ spec:
             secretKeyRef:
               name: integrasjonspunkt
               key: DIFI_MOVE_DPV_PASSWORD
+        
+        # KS SvarInn
+        - name: DIFI_MOVE_FIKS_INN_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_FIKS_INN_USERNAME
+        - name: DIFI_MOVE_FIKS_INN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_FIKS_INN_PASSWORD
+        # KS SvarUt
+        - name: DIFI_MOVE_FIKS_UT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_FIKS_UT_USERNAME
+        - name: DIFI_MOVE_FIKS_UT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_FIKS_UT_PASSWORD
 
         - name: DIFI_MOVE_NEXTMOVE_USE_DB_PERSISTENCE
           value: "true"
