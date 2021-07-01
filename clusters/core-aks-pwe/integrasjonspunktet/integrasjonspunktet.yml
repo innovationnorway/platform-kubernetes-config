@@ -66,7 +66,7 @@ spec:
         - name: DIFI_MOVE_FEATURE_ENABLEDPV
           value: "true"
         - name: DIFI_MOVE_FEATURE_ENABLEDPF
-          value: "false"
+          value: "true"
 
         - name: DIFI_MOVE_DPO_USERNAME
           valueFrom:
@@ -112,6 +112,39 @@ spec:
             secretKeyRef:
               name: integrasjonspunkt
               key: DIFI_MOVE_FIKS_UT_PASSWORD
+        # DPF Email
+        - name: DIFI_MOVE_MAIL_SMTPHOST
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_MAIL_SMTPHOST
+        - name: DIFI_MOVE_MAIL_SMTPPORT
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_MAIL_SMTPPORT
+        - name: DIFI_MOVE_MAIL_RECEIVERADDRESS
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_MAIL_RECEIVERADDRESS
+        - name: DIFI_MOVE_MAIL_SENDERADDRESS
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_MAIL_SENDERADDRESS
+        - name: DIFI_MOVE_MAIL_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_MAIL_USERNAME
+        - name: DIFI_MOVE_MAIL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: integrasjonspunkt
+              key: DIFI_MOVE_MAIL_PASSWORD
+        - name: DIFI_MOVE_MAIL_ENABLEAUTH
+          value: "true"
 
         - name: DIFI_MOVE_NEXTMOVE_USE_DB_PERSISTENCE
           value: "true"
