@@ -1,187 +1,187 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: ipunkt
-  name: ipunkt
-  namespace: ipunkt
-spec:
-  replicas: 1
-  strategy:
-    type: Recreate
-  selector:
-    matchLabels:
-      app: ipunkt
-  template:
-    metadata:
-      labels:
-        app: ipunkt
-    spec:
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 3000
-        fsGroup: 2000
-      containers:
-      - image: difi/integrasjonspunkt:latest
-        name: integrasjonspunkt
-        securityContext:
-          privileged: false
-          readOnlyRootFilesystem: false
-          allowPrivilegeEscalation: false
-          runAsNonRoot: true
-        resources:
-          requests:
-            cpu: 100m
-            memory: 800Mi
-          limits:
-            cpu: 2000m
-            memory: 2250Mi
-        volumeMounts:
-        - name: keystore
-          mountPath: "/etc/keystore"
-          readOnly: true
-        env:
-        - name: DIFI_MOVE_ORG_NUMBER
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_ORG_NUMBER
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: ipunkt
+#   name: ipunkt
+#   namespace: ipunkt
+# spec:
+#   replicas: 1
+#   strategy:
+#     type: Recreate
+#   selector:
+#     matchLabels:
+#       app: ipunkt
+#   template:
+#     metadata:
+#       labels:
+#         app: ipunkt
+#     spec:
+#       securityContext:
+#         runAsUser: 1000
+#         runAsGroup: 3000
+#         fsGroup: 2000
+#       containers:
+#       - image: difi/integrasjonspunkt:latest
+#         name: integrasjonspunkt
+#         securityContext:
+#           privileged: false
+#           readOnlyRootFilesystem: false
+#           allowPrivilegeEscalation: false
+#           runAsNonRoot: true
+#         resources:
+#           requests:
+#             cpu: 100m
+#             memory: 800Mi
+#           limits:
+#             cpu: 2000m
+#             memory: 2250Mi
+#         volumeMounts:
+#         - name: keystore
+#           mountPath: "/etc/keystore"
+#           readOnly: true
+#         env:
+#         - name: DIFI_MOVE_ORG_NUMBER
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_ORG_NUMBER
 
-        - name: DIFI_MOVE_ORG_KEYSTORE_ALIAS
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_ORG_KEYSTORE_ALIAS
+#         - name: DIFI_MOVE_ORG_KEYSTORE_ALIAS
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_ORG_KEYSTORE_ALIAS
 
-        - name: DIFI_MOVE_ORG_KEYSTORE_PATH
-          value: "file:/etc/keystore/keystore.jks"
-        - name: DIFI_MOVE_ORG_KEYSTORE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_ORG_KEYSTORE_PASSWORD
+#         - name: DIFI_MOVE_ORG_KEYSTORE_PATH
+#           value: "file:/etc/keystore/keystore.jks"
+#         - name: DIFI_MOVE_ORG_KEYSTORE_PASSWORD
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_ORG_KEYSTORE_PASSWORD
 
-        - name: DIFI_MOVE_FEATURE_ENABLEDPO
-          value: "true"
-        - name: DIFI_MOVE_FEATURE_ENABLEDPE
-          value: "false"
-        - name: DIFI_MOVE_FEATURE_ENABLEDPV
-          value: "true"
-        - name: DIFI_MOVE_FEATURE_ENABLEDPF
-          value: "true"
+#         - name: DIFI_MOVE_FEATURE_ENABLEDPO
+#           value: "true"
+#         - name: DIFI_MOVE_FEATURE_ENABLEDPE
+#           value: "false"
+#         - name: DIFI_MOVE_FEATURE_ENABLEDPV
+#           value: "true"
+#         - name: DIFI_MOVE_FEATURE_ENABLEDPF
+#           value: "true"
 
-        - name: DIFI_MOVE_DPO_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_DPO_USERNAME
-        - name: DIFI_MOVE_DPO_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_DPO_PASSWORD
+#         - name: DIFI_MOVE_DPO_USERNAME
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_DPO_USERNAME
+#         - name: DIFI_MOVE_DPO_PASSWORD
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_DPO_PASSWORD
 
-        - name: DIFI_MOVE_DPV_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_DPV_USERNAME
-        - name: DIFI_MOVE_DPV_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_DPV_PASSWORD
+#         - name: DIFI_MOVE_DPV_USERNAME
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_DPV_USERNAME
+#         - name: DIFI_MOVE_DPV_PASSWORD
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_DPV_PASSWORD
         
-        # KS SvarInn
-        - name: DIFI_MOVE_FIKS_INN_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_FIKS_INN_USERNAME
-        - name: DIFI_MOVE_FIKS_INN_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_FIKS_INN_PASSWORD
-        # KS SvarUt
-        - name: DIFI_MOVE_FIKS_UT_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_FIKS_UT_USERNAME
-        - name: DIFI_MOVE_FIKS_UT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_FIKS_UT_PASSWORD
-        # DPF Email
-        - name: DIFI_MOVE_MAIL_SMTPHOST
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_MAIL_SMTPHOST
-        - name: DIFI_MOVE_MAIL_SMTPPORT
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_MAIL_SMTPPORT
-        - name: DIFI_MOVE_MAIL_RECEIVERADDRESS
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_MAIL_RECEIVERADDRESS
-        - name: DIFI_MOVE_MAIL_SENDERADDRESS
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_MAIL_SENDERADDRESS
-        - name: DIFI_MOVE_MAIL_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_MAIL_USERNAME
-        - name: DIFI_MOVE_MAIL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: integrasjonspunkt
-              key: DIFI_MOVE_MAIL_PASSWORD
-        - name: DIFI_MOVE_MAIL_ENABLEAUTH
-          value: "true"
+#         # KS SvarInn
+#         - name: DIFI_MOVE_FIKS_INN_USERNAME
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_FIKS_INN_USERNAME
+#         - name: DIFI_MOVE_FIKS_INN_PASSWORD
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_FIKS_INN_PASSWORD
+#         # KS SvarUt
+#         - name: DIFI_MOVE_FIKS_UT_USERNAME
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_FIKS_UT_USERNAME
+#         - name: DIFI_MOVE_FIKS_UT_PASSWORD
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_FIKS_UT_PASSWORD
+#         # DPF Email
+#         - name: DIFI_MOVE_MAIL_SMTPHOST
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_MAIL_SMTPHOST
+#         - name: DIFI_MOVE_MAIL_SMTPPORT
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_MAIL_SMTPPORT
+#         - name: DIFI_MOVE_MAIL_RECEIVERADDRESS
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_MAIL_RECEIVERADDRESS
+#         - name: DIFI_MOVE_MAIL_SENDERADDRESS
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_MAIL_SENDERADDRESS
+#         - name: DIFI_MOVE_MAIL_USERNAME
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_MAIL_USERNAME
+#         - name: DIFI_MOVE_MAIL_PASSWORD
+#           valueFrom:
+#             secretKeyRef:
+#               name: integrasjonspunkt
+#               key: DIFI_MOVE_MAIL_PASSWORD
+#         - name: DIFI_MOVE_MAIL_ENABLEAUTH
+#           value: "true"
 
-        - name: DIFI_MOVE_NEXTMOVE_USE_DB_PERSISTENCE
-          value: "true"
-        - name: SPRING_DATASOURCE_URL
-          value: "jdbc:postgresql://postgresql.ipunkt.svc.cluster.local:5432/postgres"
-        - name: SPRING_DATASOURCE_USERNAME
-          value: "postgres"
-        - name: SPRING_DATASOURCE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: postgresql
-              key: postgresql-password
-        - name: SPRING_ACTIVEMQ_BROKERURL
-          value: "tcp://activemq.ipunkt.svc.cluster.local:61616"
-      volumes:
-      - name: keystore
-        secret:
-          secretName: keystore.jks
-          items:
-          - key: keystore.jks
-            path: keystore.jks
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: ipunkt
-  name: ipunkt
-  namespace: ipunkt
-spec:
-  ports:
-  - name: 9093-9093
-    port: 9093
-    protocol: TCP
-    targetPort: 9093
-  selector:
-    app: ipunkt
-  type: LoadBalancer
+#         - name: DIFI_MOVE_NEXTMOVE_USE_DB_PERSISTENCE
+#           value: "true"
+#         - name: SPRING_DATASOURCE_URL
+#           value: "jdbc:postgresql://postgresql.ipunkt.svc.cluster.local:5432/postgres"
+#         - name: SPRING_DATASOURCE_USERNAME
+#           value: "postgres"
+#         - name: SPRING_DATASOURCE_PASSWORD
+#           valueFrom:
+#             secretKeyRef:
+#               name: postgresql
+#               key: postgresql-password
+#         - name: SPRING_ACTIVEMQ_BROKERURL
+#           value: "tcp://activemq.ipunkt.svc.cluster.local:61616"
+#       volumes:
+#       - name: keystore
+#         secret:
+#           secretName: keystore.jks
+#           items:
+#           - key: keystore.jks
+#             path: keystore.jks
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     app: ipunkt
+#   name: ipunkt
+#   namespace: ipunkt
+# spec:
+#   ports:
+#   - name: 9093-9093
+#     port: 9093
+#     protocol: TCP
+#     targetPort: 9093
+#   selector:
+#     app: ipunkt
+#   type: LoadBalancer
