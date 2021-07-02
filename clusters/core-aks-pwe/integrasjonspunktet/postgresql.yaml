@@ -12,3 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bitnami
+  values:
+    global:
+      postgresql:
+        existingSecret: postgresql
