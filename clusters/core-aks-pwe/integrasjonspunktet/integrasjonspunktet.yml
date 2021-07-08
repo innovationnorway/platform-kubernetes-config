@@ -41,6 +41,19 @@ spec:
           mountPath: "/etc/keystore"
           readOnly: true
         env:
+        # P360 integrasjon
+        - name: DIFI_MOVE_NOARKSYSTEM_ENDPOINTURL
+          valueFrom:
+            secretKeyRef:
+              key: DIFI_MOVE_NOARKSYSTEM_ENDPOINTURL
+              name: integrasjonspunkt
+        - name: DIFI_MOVE_NOARKSYSTEM_TYPE
+          valueFrom:
+            secretKeyRef:
+              key: DIFI_MOVE_NOARKSYSTEM_TYPE
+              name: integrasjonspunkt
+        
+        # Generic settings
         - name: DIFI_MOVE_ORG_NUMBER
           valueFrom:
             secretKeyRef:
