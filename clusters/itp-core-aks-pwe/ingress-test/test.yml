@@ -66,9 +66,10 @@ metadata:
   namespace: test
   annotations:
     kubernetes.io/ingress.class: azure/application-gateway
+
 spec:
   rules:
-  - host: "inagictest.skyarkitektur.no"
+  - host: "rstest.innovationnorway.pizza"
     http:
       paths:
       - path: /
@@ -76,3 +77,7 @@ spec:
         backend:
           serviceName: test
           servicePort: 80
+  tls:
+  - hosts:
+    - rstest.innovationnorway.pizza
+    secretName: rstest-cert
