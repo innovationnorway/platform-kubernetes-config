@@ -68,9 +68,10 @@ metadata:
     kubernetes.io/ingress.class: azure/application-gateway
 spec:
   rules:
-  - http:
+  - host: "test.innovasjonnorge.no"
+    http:
       paths:
-      - path: /test
+      - path: /
         pathType: Prefix
         backend:
           serviceName: test
