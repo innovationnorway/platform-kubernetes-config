@@ -44,6 +44,20 @@ spec:
       port: 80
       targetPort: 80
 ---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-allow-ingress
+  namespace: test
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx
+  ingress:
+  - {}
+  policyTypes:
+  - Ingress
+---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
