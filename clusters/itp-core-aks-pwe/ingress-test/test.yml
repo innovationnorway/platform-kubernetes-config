@@ -30,6 +30,7 @@ spec:
             memory: "200Mi"
         ports:
         - containerPort: 80
+          protocol: TCP
 ---
 apiVersion: v1
 kind: Service
@@ -70,6 +71,7 @@ spec:
   - http:
       paths:
       - path: /test
+        pathType: Prefix
         backend:
           serviceName: test
           servicePort: 80
