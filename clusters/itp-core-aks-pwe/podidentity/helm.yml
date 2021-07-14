@@ -1,27 +1,10 @@
----
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: allow-mic
-  namespace: default
-spec:
-  podSelector:
-    matchLabels:
-        app.kubernetes.io/name: aad-pod-identity
-        app.kubernetes.io/component: mic
-  policyTypes:
-  - Ingress
-  - Egress
-  ingress:
-    - {}
-  egress:
-    - {}
+
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: aad-pod-identity
-  namespace: default
+  namespace: podidentity
 spec:
   url: https://raw.githubusercontent.com/Azure/aad-pod-identity/master/charts
   interval: 10m
@@ -30,7 +13,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: aad-pod-identity
-  namespace: default
+  namespace: podidentity
 spec:
   interval: 5m
   chart:
